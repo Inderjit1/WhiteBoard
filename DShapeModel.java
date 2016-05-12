@@ -64,4 +64,14 @@ public class DShapeModel {
 		x = x + dx;
 		y = y + dy;
 	}
+
+	public void remove() {
+		this.x = 0;
+		this.y = 0;
+		this.height = 0;
+		this.width = 0;
+		this.color = Color.white;
+	
+		
+	}
 }
