@@ -9,7 +9,11 @@ import java.util.Random;
 
 
 
+
+
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -28,7 +32,7 @@ public class WhiteBoard extends JFrame
 
 
 		
-		JPanel buttons = new JPanel(); // JPanel for buttons
+		final JPanel buttons = new JPanel(); // JPanel for buttons
 		buttons.setPreferredSize(new Dimension(300,300));
 		buttons.setBackground(Color.GRAY);
 		JLabel add = new JLabel("Add");
@@ -57,6 +61,7 @@ public class WhiteBoard extends JFrame
 		AddRect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent i)
 			{
+				
 				/*Random rand = new Random();
 				
 				int x = rand.nextInt(200);
@@ -85,20 +90,8 @@ public class WhiteBoard extends JFrame
 		AddOval.addActionListener(new ActionListener () {
 			public void actionPerformed(ActionEvent i)
 			{
-				/*Random rand = new Random();
-				
-				int x = rand.nextInt(200);
-				int y = rand.nextInt(200);
-				int height = rand.nextInt(200);
-				int width = rand.nextInt(200);
-				
-				
-				int firstparam = rand.nextInt(256);
-				int secondparam = rand.nextInt(256);
-				int thirdparam = rand.nextInt(256);
-				
-				Color different = new Color(firstparam,secondparam,thirdparam);
-				DOvalModel dovalmodel = new DOvalModel(x, y,height,width, different);*/
+				System.out.println("IN OVAL");
+		
 				DOvalModel dovalmodel = new DOvalModel(40, 40,50,50, Color.BLUE);
 				
 				c.addShape(dovalmodel);
@@ -116,7 +109,7 @@ public class WhiteBoard extends JFrame
 		});
 		
 		JButton AddText = new JButton("Text");
-		AddLine.addActionListener(new ActionListener ()
+		AddText.addActionListener(new ActionListener ()
 		{
 			public void actionPerformed(ActionEvent i)
 			{
@@ -124,40 +117,51 @@ public class WhiteBoard extends JFrame
 			}
 		});
 		
+		final JColorChooser color = new JColorChooser();
 		JButton AddSetColor = new JButton("Set Color");
-		AddLine.addActionListener(new ActionListener ()
+		AddSetColor.addActionListener(new ActionListener ()
 		{
 			public void actionPerformed(ActionEvent i)
 			{
-				
+				c.choiceofcolor();
+							
 			}
+	
 		});
 		
 		JButton AddMovetoFront= new JButton("Move to Front");
-		AddLine.addActionListener(new ActionListener ()
+		AddMovetoFront.addActionListener(new ActionListener ()
 		{
-			public void actionPerformed(ActionEvent i)
+			public void actionPerformed(ActionEvent e)
 			{
+				System.out.println("HRE");
 				
 			}
 		});
 		
 		JButton AddMovetoBack = new JButton("Move to Back");
-		AddLine.addActionListener(new ActionListener ()
+		AddMovetoBack.addActionListener(new ActionListener ()
 		{
 			public void actionPerformed(ActionEvent i)
 			{
 				
 			}
 		});
+		
+	
+		
 		JButton AddRemoveShape= new JButton("Remove Shape");
-		AddLine.addActionListener(new ActionListener ()
-		{
+		AddRemoveShape.addActionListener(new ActionListener () {
 			public void actionPerformed(ActionEvent i)
 			{
+				c.removeShape();
 				
 			}
 		});
+		
+		
+		
+		
 		
 		buttons.add(add);
 		buttons.add(AddRect);
@@ -168,6 +172,8 @@ public class WhiteBoard extends JFrame
 		buttons.add(AddMovetoFront);
 		buttons.add(AddMovetoBack);
 		buttons.add(AddRemoveShape);
+		buttons.add(AddSetColor);
+		
 		
 	
 		
