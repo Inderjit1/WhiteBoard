@@ -10,6 +10,8 @@ import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 public class Canvas extends JPanel
 {
 	private static ArrayList<DShapeModel> modelofshapes;
@@ -18,9 +20,9 @@ public class Canvas extends JPanel
 	private boolean selected = false;
 	private int position = 0;
 	private Point[] knobs;
+	
 
 	private boolean print;
-	private int SIZE = 30;
 	private boolean dirty;
 	private boolean smartRepaint;
 	private boolean oldRepaint;
@@ -284,6 +286,33 @@ public class Canvas extends JPanel
 		}
 	
 
+	}
+
+	public void removeShape() {
+		if(selected)
+		{
+			System.out.println("HERE");
+			System.out.println(modelofshapes.get(position));
+			modelofshapes.get(position).remove();
+			repaint();
+			
+		}
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void choiceofcolor() {
+		if(selected)
+		{
+			final JColorChooser color = new JColorChooser();
+			Color selected = color.showDialog(getParent(), "Choose", Color.white);
+			System.out.println(selected);
+			modelofshapes.get(position).setColor(selected);
+			repaint();
+	
+		}
+		// TODO Auto-generated method stub
+		
 	}
 	
 
